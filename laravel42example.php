@@ -76,6 +76,9 @@ class DocumentController extends BackendController{
             $id_document = (int)$id_document;
             $Document = Document::findOrFail($id_document);
 
+            $Document->saveProducts(Input::get('products'));
+            $Document->user_id=Auth::user()->id;
+
             if ($Document->save()) {
 
                 $Countries = Country::all();
